@@ -1,9 +1,11 @@
 package com.example.springbootfirst.Controllers;
 
+import com.example.springbootfirst.Modules.Employee;
 import com.example.springbootfirst.Services.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class HelloWorldController  {
@@ -11,7 +13,23 @@ public class HelloWorldController  {
     HelloWorldService hws;
 
     @GetMapping("/")
-    public String hello(){
-        return hws.helloworld();
+    public List<Employee> getMethod(){
+        return hws.Employee();
     }
+
+    @PostMapping("/")
+    public String postMethod(){
+        return hws.Employees().toString();
+    }
+
+    @PutMapping("/")
+    public String putMethod(){
+        return hws.Emp().toString();
+    }
+
+    @DeleteMapping("/")
+    public String deleteMethod(){
+        return hws.deleteMethod();
+    }
+
 }
