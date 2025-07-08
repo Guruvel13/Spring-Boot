@@ -16,36 +16,41 @@ public class EmployeeService {
         return employees;
     }
 
+
     public Employee createEmployee(Employee employee) {
-        employees.add(employee);
-        return employee;
+        boolean res = employees.add(employee);
+        if (res) {
+            return employee;
+        } else {
+            return null;
+        }
     }
 
-    public Employee getEmployeeById(int empId) {
-        for (Employee emp : employees) {
-            if (emp.getEmpId() == empId) {
-                return emp;
+    public Employee getEmployeeById(int id) {
+        for (int i = 0; i < employees.size(); i++) {
+            if (id == employees.get(i).getId()) {
+                return employees.get(i);
             }
         }
         return null;
     }
 
-    public String deleteEmployee(int empId) {
-        for (Employee emp : employees) {
-            if (emp.getEmpId() == empId) {
-                employees.remove(emp);
+    public String deleteEmployee(int id) {
+        for (int i = 0; i < employees.size(); i++) {
+            if (id == employees.get(i).getId()) {
+                employees.remove(i);
                 return "Employee Deleted Successfully!!";
             }
         }
-        return "Employee With Id: " + empId + " Not Found!";
+        return "Employee With Id: "+id+" Not Found!";
     }
 
-    public Employee updateEmployee(int empId, Employee updatedEmployee) {
-        for (Employee emp : employees) {
-            if (emp.getEmpId() == empId) {
-                emp.setName(updatedEmployee.getName());
-                emp.setJob(updatedEmployee.getJob());
-                return emp;
+    public Employee updateEmployee(int id, Employee updatedEmployee) {
+        for (int i = 0; i < employees.size(); i++) {
+            if (id == employees.get(i).getId()) {
+                employees.get(i).setName(updatedEmployee.getName());
+                employees.get(i).setRole(updatedEmployee.getRole());
+                return employees.get(i);
             }
         }
         return null;

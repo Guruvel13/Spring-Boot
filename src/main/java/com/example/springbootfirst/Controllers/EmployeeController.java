@@ -8,33 +8,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping
+    @GetMapping("/getEmployees")
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
-    @PostMapping
+    @PostMapping("/createEmployee")
     public Employee createEmployee(@RequestBody Employee employee) {
         return employeeService.createEmployee(employee);
     }
 
-    @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable int id) {
+    @GetMapping("/getEmployeeById/{id}")
+    public Employee getEmployeeById(@PathVariable int id){
         return employeeService.getEmployeeById(id);
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteEmployee(@PathVariable int id) {
+    @DeleteMapping("/deleteEmployee/{id}")
+    public String deleteEmployee(@PathVariable int id){
         return employeeService.deleteEmployee(id);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateEmployee/{id}")
     public Employee updateEmployee(@PathVariable int id, @RequestBody Employee employee) {
         Employee updated = employeeService.updateEmployee(id, employee);
         if (updated != null) {
